@@ -102,6 +102,18 @@
             "config/routes/fos_js_routing.yaml"
         ]
     },
+    "friendsofsymfony/rest-bundle": {
+        "version": "2.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.2",
+            "ref": "cad41ef93d6150067ae2bb3c7fd729492dff6f0a"
+        },
+        "files": [
+            "config/packages/fos_rest.yaml"
+        ]
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -186,6 +198,9 @@
     },
     "symfony/css-selector": {
         "version": "v5.0.1"
+    },
+    "symfony/debug": {
+        "version": "v4.4.1"
     },
     "symfony/debug-bundle": {
         "version": "4.1",
@@ -533,6 +548,9 @@
     },
     "willdurand/jsonp-callback-validator": {
         "version": "v1.1.0"
+    },
+    "willdurand/negotiation": {
+        "version": "v2.3.1"
     },
     "zendframework/zend-code": {
         "version": "3.4.1"
