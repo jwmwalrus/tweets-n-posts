@@ -1,0 +1,10 @@
+{
+  "extends": "/usr/lib/node_modules/stylelint-config-standard",
+  "rules": {
+    "at-rule-empty-line-before": null,
+    "indentation": 4,
+    "selector-pseudo-element-colon-notation": "single",
+    "block-no-empty": false,
+    "declaration-block-no-duplicate-properties": false
+  }
+}
