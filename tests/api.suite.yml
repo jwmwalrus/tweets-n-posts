@@ -1,0 +1,15 @@
+actor: ApiTester
+modules:
+    enabled:
+        - REST:
+              depends: PhpBrowser
+              url: '%sundrytesting_baseurl%'
+              shortDebugResponse: 300 # only the first 300 chars of the response
+        - Symfony:
+              app_path: 'src'
+              environment: 'test'
+              # part: SERVICES
+        - PhpBrowser:
+              url: http://localhost:8000
+        - Asserts
+        - \App\Tests\Helper\Api
