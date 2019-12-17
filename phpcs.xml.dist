@@ -139,7 +139,7 @@
         </properties>
     </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
-        <exclude-pattern>/src/DataFixtures/ORM/*</exclude-pattern>
+        <exclude-pattern>/src/DataFixtures/*</exclude-pattern>
         <exclude-pattern>/src/Entity/*</exclude-pattern>
         <exclude-pattern>/src/Form/*</exclude-pattern>
         <exclude-pattern>/src/Migration/*</exclude-pattern>

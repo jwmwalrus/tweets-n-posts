@@ -1,0 +1,8 @@
+---
+tokens:
+    # type: rest
+    path: /tokens/new
+    controller: App\Controller\Api\TokensController::postNew
+    defaults:
+        _format: ~
+    methods: [POST]

@@ -14,7 +14,7 @@ modules:
               # part: SERVICES
         - Doctrine2:
               depends: Symfony
-              tcleanup: true
+              tcleanup: false
         - PhpBrowser:
               url: http://localhost:8000
         - Asserts

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity repository-class="App\Repository\UserRepository" name="App\Entity\User" table="User">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+
+        <field name="name" type="string" length="255" column="name" nullable="false"/>
+
+        <field name="username" type="string" length="255" column="username" unique="true" nullable="false"/>
+
+        <field name="password" type="string" length="255" column="password" nullable="false"/>
+
+        <field name="email" type="string" length="255" column="email" nullable="false"/>
+
+        <field name="twitterid" type="string" length="255" column="twitterid" nullable="false"/>
+
+    </entity>
+
+</doctrine-mapping>

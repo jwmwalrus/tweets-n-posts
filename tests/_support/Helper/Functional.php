@@ -6,5 +6,8 @@ namespace App\Tests\Helper;
 
 class Functional extends \Codeception\Module
 {
-
+    public function getLastResponseContent()
+    {
+        return $this->getModule('PhpBrowser')->_getResponseContent();
+    }
 }

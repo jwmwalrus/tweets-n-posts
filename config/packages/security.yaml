@@ -1,27 +1,42 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+            cost: 14
+
+        Symfony\Component\Security\Core\User\User: plaintext
+
+    # http://symfony.com/doc/current/book/security.html#hierarchical-roles
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: null }
+        # in_memory: { memory: null }
+        appusers:
+            id: app.user_provider
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
         tokens:
             pattern: ^/api/tokens/new$
             security: false
 
         register:
-            pattern: ^/api/register/
+            pattern: ^/api/register$
             security: false
 
-        login:
-            pattern: ^/api/login
-            stateless: true
-            anonymous: true
-            json_login:
-                check_path: /api/login_check
-                success_handler: lexik_jwt_authentication.handler.authentication_success
-                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        # login:
+            # pattern: ^/api/login
+            # stateless: true
+            # anonymous: true
+            # json_login:
+                # check_path: /api/login_check
+                # success_handler: lexik_jwt_authentication.handler.authentication_success
+                # failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
         api:
             pattern: ^/api
@@ -34,6 +49,21 @@ security:
             pattern: ^/
             stateless: true
             anonymous: lazy
+            provider: appusers
+            switch_user: true
+            form_login:
+                login_path: login
+                check_path: login
+                always_use_default_target_path: true
+                default_target_path: /index
+                target_path_parameter: _target_path
+                use_referer: false
+                csrf_token_generator: security.csrf.token_manager
+            logout:
+                path: logout
+                invalidate_session: true
+                target: /login
+                # success_handler: mottriz.session_handler
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -43,5 +73,6 @@ security:
 
 
     access_control:
-        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/, roles: ROLE_USER }
