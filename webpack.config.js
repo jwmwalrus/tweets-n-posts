@@ -9,6 +9,10 @@ module.exports = {
     stats: 'minimal',
     parallelism: 2,
     devtool: devmode ? 'eval-source-map' : 'source-map',
+    performance: {
+        maxEntrypointSize: 2095104,
+        maxAssetSize: 2095104,
+    },
     output: {
         path: path.join(__dirname, 'public/dist'),
         filename: 'js/[name].js',

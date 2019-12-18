@@ -2,6 +2,7 @@
 !/bin/console
 /.tags
 /node_modules/
+/public/dist/
 
 ###> symfony/framework-bundle ###
 /.env.local
