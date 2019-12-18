@@ -14,14 +14,14 @@ api_users:
     options:
         expose: true
 
-login:
+api_login:
     path: /login
     controller: App\Controller\Api\SecurityController::postLogin
     defaults:
         _format: ~
     methods: [POST]
 
-register:
+api_register:
     path: /register
     controller: App\Controller\Api\SecurityController::postRegister
     defaults:

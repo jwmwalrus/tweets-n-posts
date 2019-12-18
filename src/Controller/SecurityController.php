@@ -13,8 +13,14 @@ class SecurityController extends AbstractController
      */
     public function login(): Response
     {
-        return $this->render('security/login.html.twig', [
-        ]);
+        $response = $this->render(
+            'security/login.html.twig',
+            [
+            ],
+        );
+
+        $response->headers->clearCookie('BEARER');
+        return $response;
     }
 
     /**
@@ -23,8 +29,14 @@ class SecurityController extends AbstractController
      */
     public function register(): Response
     {
-        return $this->render('security/register.html.twig', [
-        ]);
+        $response = $this->render(
+            'security/register.html.twig',
+            [
+            ],
+        );
+
+        $response->headers->clearCookie('BEARER');
+        return $response;
     }
 
     public function logout()

@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+New Post
+!{% endblock %}
+
+
+{% block stylesheets %}
+{{ parent() }}
+
+{# <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('dist/css/post_new.css') }}"> #}
+!{% endblock %}
+
+{% block body %}
+<h2>Welcome post new </h2>
+!{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+<script src="{{ asset('dist/js/post_new.js') }}"></script>
+!{% endblock %}
+

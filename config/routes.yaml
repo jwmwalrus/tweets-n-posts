@@ -27,6 +27,8 @@ home:
     defaults:
         _format: ~
     methods: [GET]
+    options:
+        expose: true
 
 login:
     path: /login
@@ -34,11 +36,15 @@ login:
     defaults:
         _format: ~
     methods: [GET]
+    options:
+        expose: true
 
 logout:
     path: /logout
     controller: App\Controller\SecurityController::logout
     methods: [GET, POST]
+    options:
+        expose: true
 
 register:
     path: /register
@@ -46,6 +52,8 @@ register:
     defaults:
         _format: ~
     methods: [GET]
+    options:
+        expose: true
 
 homepage:
     path: /

@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+User Page
+!{% endblock %}
+
+
+{% block stylesheets %}
+{{ parent() }}
+
+{# <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('dist/css/user.css') }}"> #}
+!{% endblock %}
+
+{% block body %}
+<h2>Welcome to user </h2>
+!{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+<script src="{{ asset('dist/js/user.js') }}"></script>
+!{% endblock %}
+

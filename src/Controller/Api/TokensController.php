@@ -59,7 +59,7 @@ class TokensController extends AbstractController
                         ]
                     );
 
-        $cookie = new Cookie('MOTTRIZBEARER', $token, $exp);
+        $cookie = new Cookie('BEARER', $token, $exp);
         $response = new JsonResponse(['token' => $token]);
         $response->headers->setCookie($cookie);
 
