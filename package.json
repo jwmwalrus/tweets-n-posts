@@ -1,0 +1,45 @@
+{
+  "name": "tweets-n-posts",
+  "version": "1.0.0",
+  "description": "Tweets 'n Posts ========================",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "watch": "node --max_old_space_size=2560 ./node_modules/.bin/webpack --mode development --watch",
+    "dev": "node --max_old_space_size=2560 ./node_modules/.bin/webpack --mode development",
+    "prod": "./node_modules/.bin/webpack --mode production"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ]
+  },
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "popper.js": "^1.16.0"
+  },
+  "devDependencies": {
+    "css-loader": "^3.4.0",
+    "export-loader": "^1.0.52",
+    "file-loader": "^5.0.2",
+    "glob": "^7.1.6",
+    "mini-css-extract-plugin": "^0.8.2",
+    "node-sass": "^4.13.0",
+    "path": "^0.12.7",
+    "sass-loader": "^8.0.0",
+    "script-loader": "^0.7.2",
+    "style-loader": "^1.0.2",
+    "webpack": "^4.41.3",
+    "webpack-cli": "^3.3.10"
+  },
+  "author": "",
+  "license": "ISC"
+}

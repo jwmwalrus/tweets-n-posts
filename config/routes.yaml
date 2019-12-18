@@ -8,3 +8,50 @@ api:
     prefix: /api
     options:
         expose: true
+
+post:
+    resource: 'routes/post.yaml'
+    prefix: /post
+    options:
+        expose: true
+
+user:
+    resource: 'routes/user.yaml'
+    prefix: /user
+    options:
+        expose: true
+
+home:
+    path: /home
+    controller: App\Controller\HomeController::index
+    defaults:
+        _format: ~
+    methods: [GET]
+
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+    defaults:
+        _format: ~
+    methods: [GET]
+
+logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+    methods: [GET, POST]
+
+register:
+    path: /register
+    controller: App\Controller\SecurityController::register
+    defaults:
+        _format: ~
+    methods: [GET]
+
+homepage:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: home
+        permanent: true
+        keepQueryParams: true
+        keepRequestMethod: true

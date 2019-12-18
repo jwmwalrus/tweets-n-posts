@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meVta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <!-- ... -->
+
+        {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('dist/css/app.css') }}">
+        {% endblock %}
     </head>
+
     <body>
+        <nav class="navbar fixed-top navbar-dark bg-dark">
+            <a class="navbar-brand" href="{{ path('home') }}">Tweets 'n Posts</a>
+
+            <div class="nav">
+                <a class="btn text-light bg-dark" href="{{ path('home') }}">Home </a>
+                <a class="btn text-light bg-dark" href="{{ path('register') }}">Register </a>
+                <a class="btn text-light bg-dark" href="{{ path('login') }}">Login </a>
+                <a class="btn text-light bg-dark" href="{{ path('logout') }}">Logout </a>
+            </div>
+        </nav>
+
         {% block body %}{% endblock %}
         {% block javascripts %}
         <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
         <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+
+        <script type="text/javascript">
+            const APPTITLE = "Tweets 'n Posts";
+        </script>
+
+        <script src="{{ asset('dist/js/app.js') }}"></script>
         {% endblock %}
     </body>
 </html>

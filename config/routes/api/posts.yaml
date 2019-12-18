@@ -1,0 +1,17 @@
+---
+
+api_posts_list:
+    path: /list
+    controller: App\Controller\Api\PostController::getList
+    defaults:
+        _format: ~
+    methods: [GET]
+
+api_posts_edit:
+    path: /edit/{id}
+    controller: App\Controller\Api\PostController::getEdit
+    defaults:
+        _format: ~
+    requirements:
+        id: '[1-9]\d*'
+    methods: [GET]

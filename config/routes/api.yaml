@@ -1,6 +1,34 @@
 ---
+
+api_posts:
+    type: rest
+    resource: 'api/posts.yaml'
+    prefix: /posts
+    options:
+        expose: true
+
+api_users:
+    type: rest
+    resource: 'api/users.yaml'
+    prefix: /users
+    options:
+        expose: true
+
+login:
+    path: /login
+    controller: App\Controller\Api\SecurityController::postLogin
+    defaults:
+        _format: ~
+    methods: [POST]
+
+register:
+    path: /register
+    controller: App\Controller\Api\SecurityController::postRegister
+    defaults:
+        _format: ~
+    methods: [POST]
+
 tokens:
-    # type: rest
     path: /tokens/new
     controller: App\Controller\Api\TokensController::postNew
     defaults:

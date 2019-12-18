@@ -1,0 +1,10 @@
+---
+
+user_show:
+    path: /show/{id}
+    controller: App\Controller\UserController::show
+    defaults:
+        _format: ~
+    requirements:
+        id: '[1-9]\d*'
+    methods: [GET]

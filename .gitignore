@@ -1,6 +1,7 @@
 /bin/*
 !/bin/console
 /.tags
+/node_modules/
 
 ###> symfony/framework-bundle ###
 /.env.local

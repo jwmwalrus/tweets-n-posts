@@ -1,0 +1,17 @@
+---
+
+post_new:
+    path: /new
+    controller: App\Controller\PostController::new
+    defaults:
+        _format: ~
+    methods: [GET]
+
+post_edit:
+    path: /edit/{id}
+    controller: App\Controller\PostController::edit
+    defaults:
+        _format: ~
+    requirements:
+        id: '[1-9]\d*'
+    methods: [GET]

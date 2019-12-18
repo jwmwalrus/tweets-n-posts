@@ -25,8 +25,8 @@ security:
             pattern: ^/api/tokens/new$
             security: false
 
-        register:
-            pattern: ^/api/register$
+        unsecure:
+            pattern: ^/api/(login|register)$
             security: false
 
         # login:
@@ -73,6 +73,9 @@ security:
 
 
     access_control:
+        - { path: ^/home, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/, roles: ROLE_USER }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/post, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # - { path: ^/, roles: ROLE_USER }
