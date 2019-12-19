@@ -38,7 +38,7 @@ createdb () {
     bin/console doctrine:database:create --if-not-exists -n
 }
 
-gemrsa () {
+genrsa () {
     if [[ -f config/jwt/private.pem ]]; then
         rm config/jwt/private.pem
     fi
@@ -49,7 +49,7 @@ gemrsa () {
 
     openssl genpkey -out config/jwt/private.pem -aes256 -algorithm rsa -pkeyopt rsa_keygen_bits:4096
 
-    $exit_code=$?
+    exit_code=$?
     if [[ "${exit_code}" == "0" ]]; then
         openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem -pubout
     fi
