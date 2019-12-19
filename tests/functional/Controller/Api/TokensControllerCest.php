@@ -2,8 +2,6 @@
 
 namespace App\Tests\Controller\Api;
 
-use App\DataFixtures\LoadTestUserData;
-use App\Entity\User;
 use App\Tests\FunctionalTester;
 use Firebase\JWT\JWT;
 
@@ -39,9 +37,6 @@ class TokensControllerCest
 
     public function _before(FunctionalTester $I)
     {
-        // $I->loadFixtures(LoadTestUserData::class);
-
-        $users = $I->grabEntitiesFromRepository(User::class, []);
-        // var_dump($users);
+        exec('bin/console doctrine:fixtures:load -n > /dev/null 2>&1');
     }
 }

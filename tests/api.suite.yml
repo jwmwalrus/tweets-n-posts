@@ -3,12 +3,12 @@ modules:
     enabled:
         - REST:
               depends: PhpBrowser
-              url: '%sundrytesting_baseurl%'
+              url: http://localhost:8000
               shortDebugResponse: 300 # only the first 300 chars of the response
         - Symfony:
               app_path: 'src'
               environment: 'test'
-              # part: SERVICES
+              part: SERVICES
         - PhpBrowser:
               url: http://localhost:8000
         - Asserts

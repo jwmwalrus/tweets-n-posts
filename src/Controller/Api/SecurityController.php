@@ -87,6 +87,10 @@ class SecurityController extends AbstractFOSRestController
         $em->persist($user);
         $em->flush();
 
-        return $this->view([], Response::HTTP_NO_CONTENT);
+        $data = [
+            'id' => $user->getId(),
+        ];
+
+        return $this->view($data, Response::HTTP_CREATED);
     }
 }
