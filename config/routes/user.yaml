@@ -2,7 +2,7 @@
 
 user_show:
     path: /show/{id}
-    controller: App\Controller\UserController::show
+    controller: App\Controller\UserController::index
     defaults:
         _format: ~
     requirements:

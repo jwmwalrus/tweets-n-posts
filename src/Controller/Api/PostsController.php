@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 class PostsController extends AbstractFOSRestController
 {
     /**
-     * Logs a user in
+     * postNew
      *
      */
-    public function getList(
+    public function postNew(
         EntityManagerInterface $em,
         ParamFetcher $paramfetcher
     ): View {
@@ -23,15 +23,11 @@ class PostsController extends AbstractFOSRestController
     }
 
     /**
-     * Registers a user
+     * postEdit
      *
+     * @param int $id Unique identifier or the post
      */
-    /**
-     * Returns the contents of the given post
-     *
-     * @param int $id Unique identifier of the post
-     */
-    public function getEdit(
+    public function postEdit(
         int $id,
         EntityManagerInterface $em
     ): View {
