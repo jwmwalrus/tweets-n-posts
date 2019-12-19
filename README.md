@@ -35,6 +35,17 @@ Run the following to generate appropriate keys for JWT.
 
 For demo purposes, the passphrase is **tweetsnposts**.
 
+## Seed
+
+The generated users have the following usernames:
+* user1
+* user2
+* user3
+* user4
+* user5. I
+
+In all the cases the password is `jobsity`.
+
 ## Test
 
 Start a debug/dev server with:
