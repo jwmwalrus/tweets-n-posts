@@ -6,7 +6,7 @@ A place to post your thoughts and check some tweets.
 ## Pre-requistes
 * Composer: A `composer` package is provided by Apt.
 * OpenSSL: An `openssl` package is provided by Apt.
-* Node.js: The recommended instructions can be found here.
+* Node.js: The recommended instructions can be found [here](https://github.com/nodesource/distributions#debinstall).
 
 ## Installation
 
