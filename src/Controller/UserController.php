@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,14 +19,14 @@ class UserController extends AbstractController
         int $id,
         EntityManagerInterface $em
     ): Response {
+        $author = $em->getRepository(User::class)->find($id);
         $posts = $em->getRepository(Post::class)
                     ->findBy(
-                        ['id' => $id],
+                        ['author' => $author],
                         ['id' => 'DESC']
                     );
 
         return $this->render('user/index.html.twig', [
-            'id' => $id,
             'posts' => $posts,
         ]);
     }

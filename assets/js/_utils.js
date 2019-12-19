@@ -1,5 +1,4 @@
 import { STATUS_CODES } from 'http';
-import { capitalize } from 'lodash';
 
 const LOCAL_STORAGE_PAYLOAD_KEY = 'tweets-n-posts-payloaad';
 
@@ -39,74 +38,6 @@ export class HandleFetch {
             }
             return Promise.resolve();
         }
-    }
-}
-
-export class Fetcher {
-    static async getResponse(resource, options) {
-        let response;
-        try {
-            await checkToken();
-            response = await fetch(resource, options);
-        } catch (e) {
-            if (e.message === ERROR_TOKEN_NOT_FOUND
-                || e.message === ERROR_TOKEN_EXPIRED) {
-                if (window.location.pathname.indexOf('/customers') === 0) {
-                    visitPage(Routing.generate('customers_landing', { open: 1 }));
-                } else {
-                    visitPage(Routing.generate('users_login'));
-                }
-            }
-            throw e;
-        }
-
-        if (!response.ok) {
-            throw new Error(response.status.toString());
-        } else {
-            const contentType = response.headers.get('content-type');
-            if (contentType) {
-                if (contentType.indexOf('application/json') !== -1) {
-                    const result = await response.json();
-                    return result;
-                }
-                if (contentType.indexOf('text/plain') !== -1) {
-                    const result = response.text();
-                    return result;
-                }
-            }
-            return Promise.resolve();
-        }
-    }
-
-    static async noContent(resource, options) {
-        let response;
-        try {
-            await checkToken();
-            response = await fetch(resource, options);
-        } catch (e) {
-            if (e.message === ERROR_TOKEN_NOT_FOUND
-                || e.message === ERROR_TOKEN_EXPIRED) {
-                if (window.location.pathname.indexOf('/customers') === 0) {
-                    visitPage(Routing.generate('customers_landing', { open: 1 }));
-                } else {
-                    visitPage(Routing.generate('users_login'));
-                }
-                return;
-            } else {
-                throw e;
-            }
-        }
-        if (!response.ok) {
-            throw Error(response.status.toString());
-        }
-    }
-
-    static catch(e) {
-        HandleFetch.catch(e);
-    }
-
-    static formatError(e) {
-        return HandleFetch.formatError(e);
     }
 }
 
@@ -157,18 +88,28 @@ export function getPayloadFromToken(token) {
     return atob(base64Url);
 }
 
+window.goToUserPage = function() {
+    checkToken()
+        .then((payload) => {
+            const page = Routing.generate('user_show', { id: payload.id });
+            visitPage(page);
+        })
+        .catch(console.error);
+};
+
 export function handleLinks() {
     checkToken()
         .then(() => {
             $('#login-link').hide();
             $('#logout-link').show();
             $('#register-link').hide();
-            // $('#user-page-link').show();
+            $('#user-page-link').show();
         })
         .catch(() => {
             $('#login-link').show();
             $('#logout-link').hide();
             $('#register-link').show();
+            $('#user-page-link').hide();
         });
 }
 
