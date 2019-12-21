@@ -46,6 +46,23 @@ class SecurityControllerCest
         );
     }
 
+    public function testSecurityPostRegisterExisting(ApiTester $I)
+    {
+        $I->haveHttpHeader('Authorization', 'Bearer ' . $this->token);
+
+        $user = [
+            'name' => 'Test user',
+            'username' => 'testuser',
+            'email' => 'name1@example.com',
+            'password' => 'password',
+            'twitterid' => 'testuser',
+        ];
+
+        $I->sendPOST('/api/register', $user);
+
+        $I->seeResponseCodeIs(\Codeception\Util\HttpCode::CONFLICT);
+    }
+
     public function _before(ApiTester $I)
     {
         exec('bin/console doctrine:fixtures:load -n > /dev/null 2>&1');

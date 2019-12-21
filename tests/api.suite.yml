@@ -9,6 +9,9 @@ modules:
               app_path: 'src'
               environment: 'test'
               part: SERVICES
+        - Doctrine2:
+              depends: Symfony
+              tcleanup: false
         - PhpBrowser:
               url: http://localhost:8000
         - Asserts
