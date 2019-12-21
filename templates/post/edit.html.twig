@@ -8,17 +8,44 @@ Edit Post
 {% block stylesheets %}
 {{ parent() }}
 
-{# <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('dist/css/post_edit.css') }}"> #}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('dist/css/post_edit.css') }}">
 {% endblock %}
 
 {% block body %}
-<h2>Welcome to post edit </h2>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-lg-10 mx-auto">
+            <form id="edit-post-form" onsubmit="handleSubmit(event);">
+                <div class="card card-post my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Edit post #{{ post.id }} (user: {{ post.author.name }})</h5>
+                        <div class="col-sm-10 col-md-10 col-8-10 mx-auto">
+                            <div class="card card-post-new my-5">
+                                <div class="card-header bg-secondary text-white">
+                                    <input type="text" class="form-control" name="title" style="minWidth:50%" value="{{ post.title }}" placeholder="Enter title here" required autofocus>
+                                </div>
+                                <div class="card-body">
+                                    <textarea style="minWidth=100%;" class="form-control" name="content" placeholder="Enter content here" required> {{ post.content }}</textarea>
+                                </div>
+                                <button class="btn text-white bg-primary text-uppercase float-right" type="submit">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block javascripts %}
 {{ parent() }}
 
-{{ encore_entry_script_tags('post_edit') }}
+<script type="text/javascript">
+    const POST_ID = Number("{{ post.id }}");
+    const USER_ID = Number("{{ post.author.id }}");
+</script>
+
 <script src="{{ asset('dist/js/post_edit.js') }}"></script>
 {% endblock %}
 
