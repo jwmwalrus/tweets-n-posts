@@ -8,10 +8,14 @@ use App\Entity\User;
 
 class LoadUserData extends Fixture
 {
+    public const NUSERS = 10;
+
     public function load(ObjectManager $manager)
     {
+        $faker = \Faker\Factory::create();
+
         $user = new User();
-        $user->setName('Name');
+        $user->setName('Test user');
         $user->setUsername('testuser');
         $user->setPassword(password_hash('password', PASSWORD_BCRYPT, ['cost' => 14]));
         $user->setEmail('example@example.com');
@@ -21,12 +25,12 @@ class LoadUserData extends Fixture
 
         $this->addReference('test-user', $user);
 
-        for ($i = 1; $i <= 5; ++$i) {
+        for ($i = 1; $i <= self::NUSERS; ++$i) {
             $user = new User();
-            $user->setName("User {$i}");
+            $user->setName($faker->name);
             $user->setUsername("user{$i}");
             $user->setPassword(password_hash('jobsity', PASSWORD_BCRYPT, ['cost' => 14]));
-            $user->setEmail("user{$i}@example.com");
+            $user->setEmail($faker->email);
             $user->setTwitterid("user{$i}");
             $manager->persist($user);
             $manager->flush();

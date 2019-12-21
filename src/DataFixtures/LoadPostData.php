@@ -3,20 +3,22 @@
 namespace App\DataFixtures;
 
 use App\Entity\Post;
-use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadPostData extends Fixture implements DependentFixtureInterface
 {
+    public const MAX_POSTS = 10;
+
     public function load(ObjectManager $manager)
     {
+        $faker = \Faker\Factory::create();
+
         $post = new Post();
-        $createdAt = new DateTime();
-        $post->setCreatedat($createdAt);
-        $post->setTitle('Test title');
-        $post->setContent('Test content');
+        $post->setCreatedat($faker->dateTimeThisYear);
+        $post->setTitle($faker->sentence);
+        $post->setContent($faker->text);
         $author = $this->getReference('test-user');
         $post->setAuthor($author);
         $manager->persist($post);
@@ -25,14 +27,15 @@ class LoadPostData extends Fixture implements DependentFixtureInterface
         $this->addReference('test-post', $post);
 
 
-        for ($i = 1; $i <= 5; ++$i) {
-            for ($j = 6 - $i; $j >= 1; --$j) {
+        for ($i = 1; $i <= LoadUserData::NUSERS; ++$i) {
+            $author = $this->getReference("seed-user-{$i}");
+
+            $nposts = $faker->numberBetween(1, self::MAX_POSTS);
+            for ($j = 0; $j < $nposts; ++$j) {
                 $post = new Post();
-                $createdAt = new DateTime();
-                $post->setCreatedat($createdAt);
-                $post->setTitle("Title {$j} for user {$i}");
-                $post->setContent("Content {$j} for user {$i}");
-                $author = $this->getReference("seed-user-{$i}");
+                $post->setCreatedat($faker->dateTimeThisYear);
+                $post->setTitle($faker->sentence);
+                $post->setContent($faker->text);
                 $post->setAuthor($author);
                 $manager->persist($post);
                 $manager->flush();
