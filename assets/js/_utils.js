@@ -88,29 +88,15 @@ export function getPayloadFromToken(token) {
     return atob(base64Url);
 }
 
-window.goToUserPage = function() {
-    checkToken()
-        .then((payload) => {
-            const page = Routing.generate('user_show', { id: payload.id });
-            visitPage(page);
-        })
-        .catch(console.error);
-};
-
-export function handleLinks() {
-    checkToken()
-        .then(() => {
-            $('#login-link').hide();
-            $('#logout-link').show();
-            $('#register-link').hide();
-            $('#user-page-link').show();
-        })
-        .catch(() => {
-            $('#login-link').show();
-            $('#logout-link').hide();
-            $('#register-link').show();
-            $('#user-page-link').hide();
-        });
+export async function handleLinks() {
+    try {
+        await checkToken();
+        $('#register-link').hide();
+        $('#login-link').hide();
+    } catch (e) {
+        $('#user-page-link').hide();
+        $('#logout-link').hide();
+    }
 }
 
 export async function removePayload() {
@@ -131,6 +117,15 @@ export function visitPage(page) {
 
     window.location.href = page;
 }
+
+window.goToUserPage = function() {
+    checkToken()
+        .then((payload) => {
+            const page = Routing.generate('user_show', { id: payload.id });
+            visitPage(page);
+        })
+        .catch(console.error);
+};
 
 async function fetchToken(credentials = {}) {
     let basic;

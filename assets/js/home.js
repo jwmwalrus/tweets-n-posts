@@ -1,11 +1,9 @@
 import 'dist/js/app.js';
 
+import '../scss/home.scss';
+
 import {
-    HandleFetch,
-    getToken,
     handleLinks,
-    removePayload,
-    visitPage,
 } from './_utils';
 
 $(document).ready(function() {

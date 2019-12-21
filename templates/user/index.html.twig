@@ -8,26 +8,32 @@ User Page
 {% block stylesheets %}
 {{ parent() }}
 
-{# <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('dist/css/user.css') }}"> #}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('dist/css/user.css') }}">
 !{% endblock %}
 
 {% block body %}
-<h2>Welcome to user </h2>
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-10 mx-auto">
+        <div class="col-sm-12 col-md-9 col-lg-9 mx-auto">
             <div class="card card-home my-5">
                 <div class="card-body">
-                    <h5 class="card-title text-center">User Posts</h5>
+                    <h5 class="card-title text-center">Posts from {{ user.name }}</h5>
+                    <div class="row">
+                        <div class="row">
+                            <a class="btn text-dark float-right" href={{ path('post_new') }}>New</a>
+                        </div>
+                    </div>
                     <div class="col-sm-10 col-md-10 col-8-10 mx-auto">
                         {% for p in posts %}
                         <div class="card card-homr-post my-5">
                             <div class="card-header bg-secondary text-white">
                                 <h6>{{ p.title }}</h6>
-                                <a class="btn text-white" href="#">{{ p.author.name }}</a>
                                 <p class="float-right">{{ p.createdat|date('d/m/Y g:i:s a') }}</p>
                             </div>
-                            <div class="card-bodt">
+                            <div class="card-body">
+                                <div class="row">
+                                    <a class="btn text-dark float-right editable-post" href={{ path('post_edit', {'id': p.id}) }}>Edit</a>
+                                </div>
                                 <p>{{ p.content }}</p>
                             </div>
                         </div>
@@ -36,12 +42,19 @@ User Page
                 </div>
             </div>
         </div>
+        <div class="col-sm-12 col-md-3 col-lg-3 mx-auto">
+            <p>Tweets</p>
+        </div>
     </div>
 </div>
 !{% endblock %}
 
 {% block javascripts %}
 {{ parent() }}
+
+<script type="text/javascript">
+    const USER_ID = Number("{{ user.id }}");
+</script>
 
 <script src="{{ asset('dist/js/user.js') }}"></script>
 !{% endblock %}

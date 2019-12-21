@@ -1,5 +1,7 @@
 import 'dist/js/app.js';
 
+import '../scss/signin.scss';
+
 import {
     HandleFetch,
     getToken,
@@ -28,7 +30,7 @@ window.handleSubmit = (event) => {
         .then(() => {
             getToken({ id: username, password })
                 .then(() => { visitPage(Routing.generate('home')); })
-                .catch(() => { $('.alert').show(); });
+                .catch(() => { $('.alert').removeAttr('hidden'); });
         })
         .catch(HandleFetch.catch);
 

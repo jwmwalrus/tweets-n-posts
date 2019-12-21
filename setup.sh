@@ -132,6 +132,4 @@ if [[ ! -z ${COMMAND} ]]; then
     ${COMMAND}
 fi
 
-echo "after"
-
 exit 0

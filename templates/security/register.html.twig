@@ -8,7 +8,7 @@ Register
 {% block stylesheets %}
 {{ parent() }}
 
-{# <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('dist/css/register.css') }}"> #}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('dist/css/register.css') }}">
 !{% endblock %}
 
 {% block body %}
@@ -30,7 +30,7 @@ Register
                     <form class="form-signin" id="register-form" onsubmit="handleSubmit(event);">
                         <div class="form-label-group">
                             <label for="name">Please enter your name:</label>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Username" required autofocus>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Name" required autofocus>
                         </div>
                         <div class="form-label-group">
                             <label for="username">Please enter your username:</label>
@@ -38,11 +38,11 @@ Register
                         </div>
                         <div class="form-label-group">
                             <label for="email">Please enter your enail address:</label>
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Username" required>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required>
                         </div>
                         <div class="form-label-group">
                             <label for="twitterid">Please enter your twitter ID:</label>
-                            <input type="text" id="twitterid" name="twitterid" class="form-control" placeholder="Username" required>
+                            <input type="text" id="twitterid" name="twitterid" class="form-control" placeholder="Twitter ID" required>
                         </div>
 
                         <div class="form-label-group">
@@ -52,7 +52,7 @@ Register
 
                         <div class="form-label-group">
                             <label for="repeat-password">Please enter your password again:</label>
-                            <input type="password" id="repeat-password" name="repeat-password" class="form-control" placeholder="Password" required>
+                            <input type="password" id="repeat-password" name="repeat-password" class="form-control" placeholder="Repeat Password" required>
                         </div>
 
                         <br>
@@ -60,6 +60,14 @@ Register
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
                         <hr class="my-4">
                     </form>
+
+                    <div class="alert alert-danger" role="alert" hidden>
+                        Username is already taken!
+                    </div>
+
+                    <div class="alert alert-warning" role="alert" hidden>
+                        Passwords do not match!
+                    </div>
                 </div>
             </div>
         </div>

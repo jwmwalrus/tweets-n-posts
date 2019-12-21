@@ -19,14 +19,15 @@ class UserController extends AbstractController
         int $id,
         EntityManagerInterface $em
     ): Response {
-        $author = $em->getRepository(User::class)->find($id);
+        $user = $em->getRepository(User::class)->find($id);
         $posts = $em->getRepository(Post::class)
                     ->findBy(
-                        ['author' => $author],
+                        ['author' => $user],
                         ['id' => 'DESC']
                     );
 
         return $this->render('user/index.html.twig', [
+            'user' => $user,
             'posts' => $posts,
         ]);
     }

@@ -8,7 +8,7 @@ Login
 {% block stylesheets %}
 {{ parent() }}
 
-{# <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('dist/css/login.css') }}"> #}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('dist/css/login.css') }}">
 !{% endblock %}
 
 {% block body %}
@@ -40,6 +40,10 @@ Login
                       <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log in</button>
                       <hr class="my-4">
                   </form>
+
+                  <div class="alert alert-danger" role="alert" hidden>
+                      Incorrect username or password!
+                  </div>
               </div>
           </div>
       </div>

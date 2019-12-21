@@ -1,5 +1,7 @@
 import 'dist/js/app.js';
 
+import '../scss/signin.scss';
+
 import {
     HandleFetch,
     getToken,
@@ -22,7 +24,7 @@ window.handleSubmit = (event) => {
     const repeatPassword = document.getElementById('repeat-password').value;
 
     if (password !== repeatPassword) {
-        $('.alert-warning').show();
+        $('.alert-warning').removeAttr('hidden');
         return false;
     }
 
@@ -34,24 +36,28 @@ window.handleSubmit = (event) => {
         .then(() => {
             getToken({ id: username, password })
                 .then(() => { visitPage(Routing.generate('home')); })
-                .catch(() => { $('.alert-danger').show(); });
+                .catch(() => { visitPage(Routing.generate('login')); });
         })
-        .catch(HandleFetch.catch);
+        .catch(() => { $('.alert-danger').removeAttr('hidden'); });
 
     return false;
 };
 
 $('#username').on('blur', (event) => {
-    // TODO: remove unwsanted charactres
+    const id = event.target.id;
+    const str = $(`#${id}`).val().replace(/[^A-Za-z0-9\._]+/g, '');
+    $(`#${id}`).val(str);
 });
 
-$('#repeat-password').on('blur', () => {
+$('#repeat-password').on('blur', (event) => {
     const password = document.getElementById('password').value;
-    const repeatPassword = document.getElementById('password').value;
+    const repeatPassword = event.target.value;
+    console.log('PASSWORD: ', password);
+    console.log('REPEAT PASSWORD: ', repeatPassword);
 
     if (password !== repeatPassword) {
-        $('.alert-warning').show();
+        $('.alert-warning').removeAttr('hidden');
     } else {
-        $('.alert-warning').hide();
+        $('.alert-warning').attr('hidden');
     }
 });
