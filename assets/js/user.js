@@ -11,7 +11,11 @@ import {
     handleLinks,
 } from './_utils';
 
+var statusOpen = false;
+
 $(document).ready(function() {
+    $('.sidebar').hide();
+
     handleLinks();
 
     checkToken()
@@ -29,3 +33,15 @@ $(document).ready(function() {
 
     paginate();
 });
+
+window.toggleSidebar = function() {
+    if (statusOpen) {
+        $('.sidebar').hide();
+        $('#btn-sidebar-open').show();
+    } else {
+        $('.sidebar').show();
+        $('#btn-sidebar-open').hide();
+    }
+
+    statusOpen = !statusOpen;
+};
