@@ -48,6 +48,8 @@ In all the cases the password is `jobsity`.
 
 ## Test
 
+Create a `.env.test.local` file from the provided `.env.test` file.
+
 Start a debug/dev server with:
 ```
 bin/console server:start localhost:8000 --env=test
