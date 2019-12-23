@@ -228,6 +228,9 @@
             "config/packages/lexik_jwt_authentication.yaml"
         ]
     },
+    "mashape/unirest-php": {
+        "version": "v3.0.4"
+    },
     "monolog/monolog": {
         "version": "2.0.1"
     },
@@ -245,6 +248,12 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.2.3"
+    },
+    "paquettg/php-html-parser": {
+        "version": "2.1.0"
+    },
+    "paquettg/string-encode": {
+        "version": "1.0.1"
     },
     "phar-io/manifest": {
         "version": "1.0.3"
