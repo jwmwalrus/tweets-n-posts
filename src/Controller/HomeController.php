@@ -18,8 +18,7 @@ class HomeController extends AbstractController
         $posts = $em->getRepository(Post::class)
                     ->findBy(
                         [],
-                        ['id' => 'DESC'],
-                        3
+                        ['createdat' => 'DESC', 'id' => 'DESC']
                     );
 
         return $this->render('home/index.html.twig', [

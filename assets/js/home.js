@@ -1,5 +1,7 @@
 import 'dist/js/app.js';
 
+import paginate from './_pagination';
+
 import '../scss/home.scss';
 
 import {
@@ -9,4 +11,5 @@ import {
 $(document).ready(function() {
     handleLinks();
     $('#home-link').hide();
+    paginate();
 });

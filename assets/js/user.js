@@ -2,6 +2,8 @@
  */
 import 'dist/js/app.js';
 
+import paginate from './_pagination';
+
 import '../scss/user.scss';
 
 import {
@@ -24,4 +26,6 @@ $(document).ready(function() {
             $('#user-page-link').hide();
             $('.editable-post').hide();
         });
+
+    paginate();
 });

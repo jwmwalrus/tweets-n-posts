@@ -1,0 +1,29 @@
+<nav aria-label="...">
+    <ul class="pagination justify-content-end">
+        <li class="page-item page-item--prev">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+
+        <li class="page-item  page-item-page" id="page-1">
+            <a class="page-link" href="#">1</a>
+        </li>
+
+        <li class="page-item page-item-ellipsis-left">...</li>
+
+        {% for page in range(2, npages-1) %}
+        <li class="page-item  page-item-page" id="page-{{ page }}">
+            <a class="page-link" href="#">{{ page }}</a>
+        </li>
+        {% endfor %}
+
+        <li class="page-item page-item-ellipsis-right">...</li>
+
+        <li class="page-item  page-item-page" id="page-{{ npages }}">
+            <a class="page-link" href="#">{{ npages }}</a>
+        </li>
+
+        <li class="page-item page-item-next">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>

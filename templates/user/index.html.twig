@@ -13,40 +13,47 @@ User Page
 
 {% block body %}
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-9 col-lg-9 mx-auto">
-            <div class="card card-home my-5">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Posts from {{ user.name }}</h5>
-                    <div class="row">
+    <div class="main">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-10 mx-auto">
+                <div class="card card-user my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Posts from {{ user.name }}</h5>
+
                         <div class="row">
-                            <a class="btn text-dark float-right" href={{ path('post_new') }}>New</a>
+                            <button class="btn btn-info" href={{ path('post_new') }}>New Post</button>
                         </div>
-                    </div>
-                    <div class="col-sm-10 col-md-10 col-8-10 mx-auto">
-                        {% for p in posts %}
-                        <div class="card card-homr-post my-5">
-                            <div class="card-header bg-secondary text-white">
-                                <h6>{{ p.title }}</h6>
-                                <p class="float-right">{{ p.createdat|date('d/m/Y g:i:s a') }}</p>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <a class="btn text-dark float-right editable-post" href={{ path('post_edit', {'id': p.id}) }}>Edit</a>
+
+                        <div class="row">
+                            <div class="col-sm-10 col-md-10 col-8-10 mx-auto">
+                                {% for p in posts %}
+                                <div id="post-{{ loop.index }}" class="card card-paginated my-5">
+                                    <div class="card-header bg-secondary text-white">
+                                        <h6>{{ p.title }}</h6>
+                                        <p class="float-right">{{ p.createdat|date('d/m/Y g:i:s a') }}</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <a class="btn text-dark float-right editable-post" href={{ path('post_edit', {'id': p.id}) }}>Edit</a>
+                                        </div>
+                                        <p>{{ p.content }}</p>
+                                    </div>
                                 </div>
-                                <p>{{ p.content }}</p>
+                                {% endfor %}
                             </div>
                         </div>
-                        {% endfor %}
                     </div>
+
+                    {% set npages = (posts|length / 3)|round(0, 'ceil') %}
+                    {% include 'include/pagination.html.twig' with { 'npages': npages } %}
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-3 col-lg-3 mx-auto">
-            <p>Tweets</p>
-        </div>
     </div>
 </div>
+
+
+
 !{% endblock %}
 
 {% block javascripts %}
@@ -54,6 +61,7 @@ User Page
 
 <script type="text/javascript">
     const USER_ID = Number("{{ user.id }}");
+    const NCARDS = Number("{{ posts|length }}");
 </script>
 
 <script src="{{ asset('dist/js/user.js') }}"></script>

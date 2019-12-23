@@ -23,7 +23,7 @@ class UserController extends AbstractController
         $posts = $em->getRepository(Post::class)
                     ->findBy(
                         ['author' => $user],
-                        ['id' => 'DESC']
+                        ['createdat' => 'DESC', 'id' => 'DESC']
                     );
 
         return $this->render('user/index.html.twig', [
