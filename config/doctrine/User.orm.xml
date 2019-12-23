@@ -18,7 +18,7 @@
 
         <field name="email" type="string" length="255" column="email" nullable="false"/>
 
-        <field name="twitterid" type="string" length="255" column="twitterid" nullable="false"/>
+        <field name="twitterid" type="string" length="255" column="twitterid" nullable="false" unique="true"/>
 
     </entity>
 

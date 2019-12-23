@@ -11,6 +11,7 @@
         </id>
 
         <field name="createdat" type="datetime" column="createdat" nullable="false"/>
+
         <field name="title" type="string" length="255" column="title" nullable="false"/>
 
         <field name="content" type="text" column="content" nullable="false"/>

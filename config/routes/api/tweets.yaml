@@ -1,0 +1,8 @@
+---
+
+api_tweets_list:
+    path: /list
+    controller: App\Controller\Api\TweetsController::getList
+    defaults:
+        _format: ~
+    methods: [GET]

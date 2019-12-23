@@ -43,3 +43,5 @@ services:
     App\Security\UserProvider: ~
 
     app.user_provider: '@App\Security\UserProvider'
+
+    App\Service\TwitterFeeds: ~

@@ -8,7 +8,15 @@ use App\Entity\User;
 
 class LoadUserData extends Fixture
 {
-    public const NUSERS = 10;
+    public const NUSERS = 5;
+
+    public const TWITTER_IDS = [
+        'thestrokes',
+        'arcadefire',
+        'foofighters',
+        'DefLeppart',
+        'TeslaBand',
+    ];
 
     public function load(ObjectManager $manager)
     {
@@ -19,7 +27,7 @@ class LoadUserData extends Fixture
         $user->setUsername('testuser');
         $user->setPassword(password_hash('password', PASSWORD_BCRYPT, ['cost' => 14]));
         $user->setEmail('example@example.com');
-        $user->setTwitterid('someid');
+        $user->setTwitterid('thebeatles');
         $manager->persist($user);
         $manager->flush();
 
@@ -31,7 +39,7 @@ class LoadUserData extends Fixture
             $user->setUsername("user{$i}");
             $user->setPassword(password_hash('jobsity', PASSWORD_BCRYPT, ['cost' => 14]));
             $user->setEmail($faker->email);
-            $user->setTwitterid("user{$i}");
+            $user->setTwitterid(self::TWITTER_IDS[$i - 1]);
             $manager->persist($user);
             $manager->flush();
 

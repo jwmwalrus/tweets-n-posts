@@ -7,6 +7,13 @@ api_posts:
     options:
         expose: true
 
+api_tweets:
+    type: rest
+    resource: 'api/tweets.yaml'
+    prefix: /tweets
+    options:
+        expose: true
+
 api_users:
     type: rest
     resource: 'api/users.yaml'

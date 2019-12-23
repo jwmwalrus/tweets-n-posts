@@ -9,7 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadPostData extends Fixture implements DependentFixtureInterface
 {
-    public const MAX_POSTS = 10;
+    public const MAX_POSTS = 5;
 
     public function load(ObjectManager $manager)
     {
