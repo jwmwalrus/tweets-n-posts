@@ -41,7 +41,7 @@ class TwitterFeeds
 
             $dom = new Dom();
             try {
-                $dom->loadFromUrl("https://twitter.com/{$twitterId}?ref_src=twsrc,limit={$limit}");
+                $dom->loadFromUrl("https://twitter.com/{$twitterId}?ref_src=twsrc,tweet-limit=20,width=200");
             } catch (\Throwable $e) {
                 continue;
             }

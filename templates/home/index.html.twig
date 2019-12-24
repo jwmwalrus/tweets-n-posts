@@ -24,10 +24,10 @@ Home
                         <div class="col-sm-10 col-md-10 col-8-10 mx-auto">
                             {% for p in posts %}
                             <div id="post-{{ loop.index }}" class="card card-paginated my-5">
-                                <div class="card-header bg-secondary text-white">
-                                    <h6>{{ p.title }}</h6>
-                                    <p> By <a class="text-white" href="{{ path('user_show', {'id': p.author.id}) }}">{{ p.author.name }}</a></p>
-                                    <p class="float-right">{{ p.createdat|date('d/m/Y g:i:s a') }}</p>
+                                <div class="card-header">
+                                    <p class="my-0"><strong>{{ p.title }}</strong></p>
+                                    <p class="my-0"> By <a href="{{ path('user_show', {'id': p.author.id}) }}">{{ p.author.name }}</a></p>
+                                    <small class="float-right">{{ p.createdat|date('d/m/Y g:i:s a') }}</small>
                                 </div>
                                 <div class="card-body">
                                     <p>{{ p.content }}</p>
