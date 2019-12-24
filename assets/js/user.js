@@ -16,17 +16,16 @@ var statusOpen = false;
 var tweetsList = [];
 
 $(document).ready(function() {
-    $('.sidebar').hide();
-
-    handleLinks();
+    handleLinks('user');
 
     (async () => {
         try {
             const payload = await checkToken();
 
             if (USER_ID === Number(payload.id)) {
-                $('#user-page-link').hide();
+                $('#post-new').removeAttr('hidden');
             } else {
+                $('#user-page-link').removeAttr('hidden');
                 $('.editable-post').hide();
             }
 
@@ -79,11 +78,9 @@ function updateTweetsRoot() {
 
 window.toggleSidebar = function() {
     if (statusOpen) {
-        $('.sidebar').hide();
-        $('#btn-sidebar-open').show();
+        $('.sidebar').attr('hidden', 'hidden');
     } else {
-        $('.sidebar').show();
-        $('#btn-sidebar-open').hide();
+        $('.sidebar').removeAttr('hidden');
     }
 
     statusOpen = !statusOpen;

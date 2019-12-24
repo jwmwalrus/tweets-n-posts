@@ -12,7 +12,7 @@ import {
 } from './_utils';
 
 $(document).ready(function() {
-    handleLinks();
+    handleLinks('post');
 });
 
 window.handleSubmit = (event) => {

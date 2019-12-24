@@ -88,14 +88,49 @@ export function getPayloadFromToken(token) {
     return atob(base64Url);
 }
 
-export async function handleLinks() {
+export async function handleLinks(from) {
     try {
         await checkToken();
-        $('#register-link').hide();
-        $('#login-link').hide();
+        switch (from) {
+            case 'home':
+                $('#logout-link').removeAttr('hidden');
+                $('#user-page-link').removeAttr('hidden');
+                break;
+            case 'user':
+                $('#sidebar-toggle').removeAttr('hidden');
+                $('#home-link').removeAttr('hidden');
+                $('#logout-link').removeAttr('hidden');
+                break;
+            case 'post':
+                $('#home-link').removeAttr('hidden');
+                $('#logout-link').removeAttr('hidden');
+                $('#user-page-link').removeAttr('hidden');
+                break;
+            default:
+        }
     } catch (e) {
-        $('#user-page-link').hide();
-        $('#logout-link').hide();
+        switch (from) {
+            case 'home':
+                $('#login-link').removeAttr('hidden');
+                $('#register-link').removeAttr('hidden');
+                break;
+            case 'user':
+                $('#sidebar-toggle').removeAttr('hidden');
+                $('#home-link').removeAttr('hidden', 'hidden');
+                $('#login-link').removeAttr('hidden', 'hidden');
+                $('#register-link').removeAttr('hidden', 'hidden');
+                break;
+            case 'login':
+                $('#home-link').removeAttr('hidden', 'hidden');
+                $('#register-link').removeAttr('hidden', 'hidden');
+                break;
+            case 'register':
+                $('#home-link').removeAttr('hidden', 'hidden');
+                $('#login-link').removeAttr('hidden', 'hidden');
+
+                break;
+            default:
+        }
     }
 }
 

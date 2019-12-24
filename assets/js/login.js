@@ -12,7 +12,7 @@ import {
 
 $(document).ready(function() {
     removePayload();
-    handleLinks();
+    handleLinks('login');
     $('#login-link').hide();
 });
 

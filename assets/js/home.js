@@ -9,7 +9,6 @@ import {
 } from './_utils';
 
 $(document).ready(function() {
-    handleLinks();
-    $('#home-link').hide();
+    handleLinks('home');
     paginate();
 });

@@ -18,14 +18,11 @@ User Page
             <div class="col-sm-12 col-md-12 col-lg-10 mx-auto">
                 <div class="card card-user my-5">
                     <div class="card-body">
-                        <div class="row ml-1">
-                            <button id="btn-sidebar-open" class="btn btn-success" onclick="toggleSidebar()">Show Tweets</button>
-                        </div>
 
                         <h5 class="card-title text-center">Posts from {{ user.name }}</h5>
 
                         <div class="row float-right">
-                            <button class="btn btn-info" href={{ path('post_new') }}>New Post</button>
+                            <button id="post-new" class="btn btn-info" href={{ path('post_new') }} hidden>New Post</button>
                         </div>
 
                         <div class="row">
@@ -54,12 +51,11 @@ User Page
             </div>
         </div>
     </div>
-    <div class="sidebar">
+    <div class="sidebar" hidden>
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-10 mx-auto">
                 <div class="card card-user my-5">
                     <div class="card-body">
-                        <button id="btn-sidebar-close" class="btn btn-success" onclick="toggleSidebar()">Hide Tweets</button>
                         <div id="tweets-root"></div>
                     </div>
                 </div>
