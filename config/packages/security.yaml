@@ -26,17 +26,8 @@ security:
             security: false
 
         unsecure:
-            pattern: ^/api/(login|register)$
+            pattern: ^/api/(login|register|tweets/list)$
             security: false
-
-        # login:
-            # pattern: ^/api/login
-            # stateless: true
-            # anonymous: true
-            # json_login:
-                # check_path: /api/login_check
-                # success_handler: lexik_jwt_authentication.handler.authentication_success
-                # failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
         api:
             pattern: ^/api
@@ -63,14 +54,12 @@ security:
                 path: logout
                 invalidate_session: true
                 target: /login
-                # success_handler: mottriz.session_handler
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
-
 
     access_control:
         - { path: ^/home, roles: IS_AUTHENTICATED_ANONYMOUSLY }

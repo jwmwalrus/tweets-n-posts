@@ -6,3 +6,12 @@ api_tweets_list:
     defaults:
         _format: ~
     methods: [GET]
+
+api_tweets_patch:
+    path: /patch/{id}
+    controller: App\Controller\Api\TweetsController::patch
+    defaults:
+        _format: ~
+    requirements:
+        id: '[1-9]\d*'
+    methods: [PATCH]

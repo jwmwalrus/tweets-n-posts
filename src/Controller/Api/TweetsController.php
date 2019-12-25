@@ -2,11 +2,9 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Post;
 use App\Entity\Tweet;
 use App\Entity\User;
 use App\Service\TwitterFeeds;
-use DateTime;
 use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
@@ -89,5 +87,53 @@ class TweetsController extends AbstractFOSRestController
         }
 
         return $this->view($data, Response::HTTP_OK);
+    }
+
+    /**
+     * patch
+     *
+     * @param int $id
+     */
+    public function patch(
+        int $id,
+        EntityManagerInterface $em,
+        ParamFetcher $paramfetcher
+    ): View {
+        $drp = new RequestParam();
+        $drp->name = 'hidden';
+        $drp->requirements = '[01]';
+        $drp->nullable = true;
+        $paramfetcher->addParam($drp);
+
+        $tweet = $em->getRepository(Tweet::class)
+                   ->find($id);
+
+        if (empty($tweet)) {
+            throw new NotFoundHttpException('The requested Tweet does not exist');
+        }
+
+        try {
+            foreach ($paramfetcher->all() as $k => $v) {
+                if ($v === null) {
+                    continue;
+                }
+
+                switch ($k) {
+                    case 'hidden':
+                        $tweet->setHidden(boolval($v));
+                        break;
+                    default:
+                }
+            }
+
+            $em->persist($tweet);
+            $em->flush();
+        } catch (DBALException $e) {
+            throw new BadRequestHttpException('Error executing SQL statements: ' + $e->getMessage());
+        } catch (\Throwable $e) {
+            throw new BadRequestHttpException($e->getMessage());
+        }
+
+        return $this->view([], Response::HTTP_NO_CONTENT);
     }
 }

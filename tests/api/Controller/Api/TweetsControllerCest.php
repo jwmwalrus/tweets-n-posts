@@ -2,11 +2,12 @@
 
 namespace App\Tests\Controller\Api;
 
+use App\Entity\Tweet;
+use App\Entity\User;
 use App\Tests\ApiTester;
 
 class TweetsControllerCest
 {
-    // tests
     public function testGetList(ApiTester $I)
     {
         $I->haveHttpHeader('Authorization', 'Bearer ' . $this->token);
@@ -26,6 +27,28 @@ class TweetsControllerCest
             count($response) > 1,
             'No tweets were updated'
         );
+    }
+
+    public function testPostHideTweet(ApiTester $I)
+    {
+        $testUser = $I->grabEntityFromRepository(
+            User::class,
+            ['username' => 'testuser']
+        );
+
+        $tweet = $I->grabEntityFromRepository(
+            Tweet::class,
+            ['owner' => $testUser]
+        );
+        $id = $tweet->getId();
+
+        $I->haveHttpHeader('Authorization', 'Bearer ' . $this->token);
+
+        $data = ['hidden' => 1];
+
+        $I->sendPATCH("/api/tweets/patch/{$id}", $data);
+
+        $I->seeResponseCodeIs(\Codeception\Util\HttpCode::NO_CONTENT);
     }
 
     public function _before(ApiTester $I)
