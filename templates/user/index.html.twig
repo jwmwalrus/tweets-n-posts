@@ -21,8 +21,8 @@ User Page
 
                         <h5 class="card-title text-center">Posts from {{ user.name }}</h5>
 
-                        <div class="row float-right">
-                            <button id="post-new" class="btn btn-info" href={{ path('post_new') }} hidden>New Post</button>
+                        <div class="text-center">
+                            <button id="post-new" class="btn btn-info p-1" hidden><small>New Post</small></button>
                         </div>
 
                         <div class="row">
@@ -31,12 +31,14 @@ User Page
                                 <div id="post-{{ loop.index }}" class="card card-paginated my-5">
                                     <div class="card-header">
                                         <p class="my-0"><stron>{{ p.title }}</stron></p>
-                                        <small class="float-right">{{ p.createdat|date('d/m/Y g:i:s a') }}</small>
+                                        <div class="row">
+                                            <a class="btn text-dark float-right editable-post" href="{{ path('post_edit', {'id': p.id}) }}">Edit</a>
+                                        </div>
+                                        <div class="row float-right">
+                                            <small>{{ p.createdat|date('d/m/Y g:i:s a') }}</small>
+                                        </div>
                                     </div>
                                     <div class="card-body">
-                                        <div class="row">
-                                            <a class="btn text-dark float-right editable-post" href={{ path('post_edit', {'id': p.id}) }}>Edit</a>
-                                        </div>
                                         <p>{{ p.content }}</p>
                                     </div>
                                 </div>
@@ -53,10 +55,27 @@ User Page
     </div>
     <div class="sidebar" hidden>
         <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-10 mx-auto">
+            <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
                 <div class="card card-user my-5">
                     <div class="card-body">
-                        <div id="tweets-root"></div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-8 col-lg-8 mx-auto">
+                                <form>
+                                    <select id="tweets-filter" class="form-control my-3">
+                                        <option value="1">All</option>
+                                        <option value="2">Mine</option>
+                                        <option value="3">Hidden</option>
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="col-sm-12 col-md-4 col-lg-4 mx-auto">
+                                <button id="refresh-tweets" class="btn btn-success"><small>Refresh</small></button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+                                <div id="tweets-root"></div>
+                            </div>
                     </div>
                 </div>
             </div>
