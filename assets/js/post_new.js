@@ -29,8 +29,15 @@ window.handleSubmit = (event) => {
     const fd = new FormData(form);
 
     (async () => {
+        let payload;
         try {
-            const payload = await checkToken();
+            payload = await checkToken();
+        } catch (e) {
+            visitPage(Routing.generate('login'));
+            return;
+        }
+
+        try {
             fd.append('user_id', payload.id);
 
             const response = await fetch(
@@ -42,7 +49,6 @@ window.handleSubmit = (event) => {
 
             visitPage(Routing.generate('user_show', { id: payload.id }));
         } catch (e) {
-            $('.alert-danger').show();
             HandleFetch.catch(e);
         }
     })();

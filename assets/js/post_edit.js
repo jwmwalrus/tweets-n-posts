@@ -7,6 +7,7 @@ import '../scss/post.scss';
 
 import {
     HandleFetch,
+    checkToken,
     handleLinks,
     visitPage,
 } from './_utils';
@@ -23,6 +24,13 @@ window.handleSubmit = (event) => {
 
     (async () => {
         try {
+            await checkToken();
+        } catch (e) {
+            visitPage(Routing.generate('login'));
+            return;
+        }
+
+        try {
             const response = await fetch(
                 Routing.generate('api_posts_edit', { id: POST_ID }),
                 { method: 'POST', body: fd },
@@ -32,7 +40,6 @@ window.handleSubmit = (event) => {
 
             visitPage(Routing.generate('user_show', { id: USER_ID }));
         } catch (e) {
-            $('.alert-danger').show();
             HandleFetch.catch(e);
         }
     })();
