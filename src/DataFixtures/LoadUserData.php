@@ -14,8 +14,8 @@ class LoadUserData extends Fixture
         'thestrokes',
         'arcadefire',
         'foofighters',
-        'DefLeppart',
-        'TeslaBand',
+        'theblackkeys',
+        'muse',
     ];
 
     public function load(ObjectManager $manager)

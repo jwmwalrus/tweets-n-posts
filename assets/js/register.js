@@ -52,8 +52,6 @@ $('#username').on('blur', (event) => {
 $('#repeat-password').on('blur', (event) => {
     const password = document.getElementById('password').value;
     const repeatPassword = event.target.value;
-    console.log('PASSWORD: ', password);
-    console.log('REPEAT PASSWORD: ', repeatPassword);
 
     if (password !== repeatPassword) {
         $('.alert-warning').removeAttr('hidden');
