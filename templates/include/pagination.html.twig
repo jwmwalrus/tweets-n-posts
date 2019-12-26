@@ -8,6 +8,7 @@
             <a class="page-link" href="#">1</a>
         </li>
 
+        {% if (npages > 2) %}
         <li class="page-item page-item-ellipsis-left">...</li>
 
         {% for page in range(2, npages-1) %}
@@ -17,10 +18,13 @@
         {% endfor %}
 
         <li class="page-item page-item-ellipsis-right">...</li>
+        {% endif %}
 
+        {% if (npages > 1) %}
         <li class="page-item  page-item-page" id="page-{{ npages }}">
             <a class="page-link" href="#">{{ npages }}</a>
         </li>
+        {% endif %}
 
         <li class="page-item page-item-next">
             <a class="page-link" href="#">Next</a>

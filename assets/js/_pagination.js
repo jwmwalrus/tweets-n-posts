@@ -26,7 +26,7 @@ function pageItemPrev() {
         return;
     }
 
-    $(`#page-${iPage--}`).trigger('click');
+    $(`#page-${--iPage}`).trigger('click');
 }
 
 function pageItemPage() {
@@ -36,12 +36,12 @@ function pageItemPage() {
 }
 
 function pageItemNext() {
-    if (iPage <= nPages) {
+    if (iPage >= nPages) {
         console.error('NEXT IS SHOWN ON LAST');
         return;
     }
 
-    $(`#page-${iPage++}`).trigger('click');
+    $(`#page-${++iPage}`).trigger('click');
 }
 
 function setActivePage(page) {
@@ -55,10 +55,14 @@ function setActivePage(page) {
 
     if (page === 1) {
         $('.page-item-prev').hide();
+    } else {
+        $('.page-item-prev').show();
     }
 
     if (page === nPages) {
         $('.page-item-next').hide();
+    } else {
+        $('.page-item-next').show();
     }
 
     if (page - 2 >= 4) {
